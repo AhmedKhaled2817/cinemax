@@ -1,0 +1,309 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.movie-details {
+  background-color: $netflix-black;
+  min-height: 100vh;
+}
+
+.details-hero {
+  position: relative;
+  padding: 120px 0 80px;
+  margin-bottom: 60px;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.3;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    $netflix-black 0%,
+    rgba(20, 20, 20, 0.7) 50%,
+    rgba(20, 20, 20, 0.4) 100%
+  );
+}
+
+.details-content {
+  position: relative;
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.details-poster {
+  flex-shrink: 0;
+}
+
+.poster {
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+  @include tablet {
+    width: 240px;
+  }
+
+  @include mobile {
+    width: 200px;
+  }
+}
+
+.details-info {
+  flex: 1;
+  max-width: 800px;
+
+  @include tablet {
+    max-width: 100%;
+  }
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.12;
+  margin-bottom: 22px;
+
+  @include tablet {
+    font-size: 36px;
+  }
+
+  @include mobile {
+    font-size: 28px;
+  }
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: $netflix-off-white;
+
+  @include tablet {
+    justify-content: center;
+  }
+
+  @include mobile {
+    font-size: 14px;
+    gap: 12px;
+  }
+}
+
+.vote {
+  color: #46d369;
+  font-weight: 700;
+}
+
+.genres {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+
+  @include tablet {
+    justify-content: center;
+  }
+}
+
+.genre {
+  padding: 6px 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.overview {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-top: 8px;
+  margin-bottom: 32px;
+  color: $netflix-off-white;
+
+  @include mobile {
+    font-size: 16px;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+
+  @include tablet {
+    justify-content: center;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.play-btn,
+.watchlist-btn {
+  @include netflix-button;
+  padding: 14px 32px;
+  font-size: 18px;
+}
+
+.watchlist-btn {
+  @include outline-button;
+  padding: 14px 32px;
+  font-size: 18px;
+}
+
+.details-sections {
+  padding: 0 4% 80px;
+}
+
+.section {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
+
+  @include tablet {
+    font-size: 24px;
+  }
+
+  @include mobile {
+    font-size: 20px;
+  }
+}
+
+.cast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 24px;
+
+  @include tablet {
+    gap: 16px;
+  }
+}
+
+.cast-card {
+  text-align: center;
+}
+
+.cast-image {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background-color: $netflix-gray;
+}
+
+.cast-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cast-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: 700;
+  color: $netflix-light-gray;
+}
+
+.cast-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cast-character {
+  font-size: 14px;
+  color: $netflix-light-gray;
+}
+
+.similar-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 8px 0;
+  @include custom-scrollbar;
+  scroll-behavior: smooth;
+}
+
+.trailer-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.trailer-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 16 / 9;
+}
+
+.close-btn {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $netflix-gray;
+  color: $netflix-white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: $netflix-light-gray;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 100px;
+  color: $netflix-light-gray;
+  font-size: 20px;
+}

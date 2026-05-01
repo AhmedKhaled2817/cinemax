@@ -1,0 +1,86 @@
+<div class="search page-wrapper">
+  <div class="container">
+    @if (query) {
+      <h1 class="page-title">Search Results for "{{ query }}"</h1>
+    } @else {
+      <h1 class="page-title">Search</h1>
+      <p class="search-hint">Use the search bar above to find movies and TV shows.</p>
+    }
+
+    @if (searchHistory().length > 0) {
+      <div class="search-history">
+        <div class="history-header">
+          <h3>Recent Searches</h3>
+          <button type="button" class="clear-history-btn" (click)="clearHistory()">Clear</button>
+        </div>
+        <div class="history-chips">
+          @for (term of searchHistory(); track term) {
+            <button type="button" class="history-chip" (click)="runHistorySearch(term)">
+              {{ term }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    @if (results().length > 0) {
+      <div class="result-controls">
+        <span>Sort by:</span>
+        <button
+          type="button"
+          class="sort-btn"
+          [class.active]="sortBy() === 'relevance'"
+          (click)="setSort('relevance')"
+        >
+          Relevance
+        </button>
+        <button
+          type="button"
+          class="sort-btn"
+          [class.active]="sortBy() === 'rating'"
+          (click)="setSort('rating')"
+        >
+          Rating
+        </button>
+        <button
+          type="button"
+          class="sort-btn"
+          [class.active]="sortBy() === 'popular'"
+          (click)="setSort('popular')"
+        >
+          Popularity
+        </button>
+        <button
+          type="button"
+          class="sort-btn"
+          [class.active]="sortBy() === 'latest'"
+          (click)="setSort('latest')"
+        >
+          Latest
+        </button>
+      </div>
+
+      <div class="results-grid">
+        @for (item of sortedResults(); track item.id) {
+          <app-movie-card [item]="item" [mediaType]="getMediaType(item)" />
+        }
+      </div>
+    } @else if (query && !loading()) {
+      <div class="no-results">
+        <p>No results found for "{{ query }}"</p>
+      </div>
+    }
+
+    @if (loading()) {
+      <div class="loading">
+        <p>Searching...</p>
+      </div>
+    }
+
+    @if (!loading() && page < totalPages && results().length > 0) {
+      <div class="load-more">
+        <button class="load-more-btn" (click)="loadMore()">Load More</button>
+      </div>
+    }
+  </div>
+</div>

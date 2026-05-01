@@ -1,0 +1,23 @@
+<div class="skeleton" [class.grid-variant]="variant === 'grid'" [class.row-variant]="variant === 'row'">
+  @if (variant === 'row') {
+    @for (row of createRange(rows); track row) {
+      <div class="skeleton-row">
+        <div class="skeleton-row-header">
+          <span class="skeleton-title"></span>
+          <span class="skeleton-controls"></span>
+        </div>
+        <div class="skeleton-cards horizontal">
+          @for (card of createRange(cardsPerRow); track card) {
+            <span class="skeleton-card"></span>
+          }
+        </div>
+      </div>
+    }
+  } @else {
+    <div class="skeleton-cards grid">
+      @for (card of createRange(cardsPerRow); track card) {
+        <span class="skeleton-card"></span>
+      }
+    </div>
+  }
+</div>

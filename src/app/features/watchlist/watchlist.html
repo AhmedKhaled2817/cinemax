@@ -1,0 +1,19 @@
+<div class="watchlist page-wrapper">
+  <div class="container">
+    <div class="watchlist-hero">
+      <h1 class="page-title">My List</h1>
+      <p class="watchlist-subtitle">Your saved picks, ready to watch anytime.</p>
+    </div>
+
+    @if (watchlist().length > 0) {
+      <p class="watchlist-note">Use (+ / ✓) on any card to remove items from your list.</p>
+      <app-movie-row title="Saved in My List" [items]="watchlist()" />
+    } @else {
+      <div class="empty-watchlist">
+        <h2>Your list is empty</h2>
+        <p>Start adding movies and TV shows to your list!</p>
+        <a routerLink="/" class="browse-btn">Browse Content</a>
+      </div>
+    }
+  </div>
+</div>

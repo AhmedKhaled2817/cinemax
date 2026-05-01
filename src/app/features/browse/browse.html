@@ -1,0 +1,26 @@
+<div class="browse page-wrapper">
+  <div class="container">
+    <div class="browse-hero">
+      <h1 class="page-title">{{ getTitle() }}</h1>
+      <p class="page-subtitle">{{ getSubtitle() }}</p>
+    </div>
+
+    @if (items().length > 0) {
+      <app-movie-row
+        [title]="mediaType === 'movie' ? 'Popular Movies' : 'Popular TV Shows'"
+        [items]="items()"
+        [mediaType]="mediaType"
+      />
+    }
+
+    @if (loading()) {
+      <app-skeleton-loader variant="row" [rows]="2" [cardsPerRow]="6" />
+    }
+
+    @if (!loading() && page < totalPages && items().length > 0) {
+      <div class="load-more">
+        <button class="load-more-btn" (click)="loadMore()">Load More</button>
+      </div>
+    }
+  </div>
+</div>

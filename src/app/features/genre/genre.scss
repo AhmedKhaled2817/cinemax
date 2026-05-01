@@ -1,0 +1,64 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.genre {
+  background-color: $netflix-black;
+  min-height: 100vh;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 32px;
+
+  @include tablet {
+    font-size: 28px;
+  }
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+
+  @include tablet {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  @include mobile {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: $netflix-light-gray;
+  font-size: 18px;
+}
+
+.load-more {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.load-more-btn {
+  @include netflix-button;
+  background-color: $netflix-red;
+  color: $netflix-white;
+  padding: 12px 40px;
+  font-size: 16px;
+
+  &:hover {
+    background-color: $netflix-red-hover;
+  }
+}

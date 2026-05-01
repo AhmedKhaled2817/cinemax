@@ -1,0 +1,67 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.skeleton {
+  width: 100%;
+}
+
+.skeleton-row {
+  margin-bottom: 26px;
+}
+
+.skeleton-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.skeleton-title {
+  width: 180px;
+  height: 18px;
+  border-radius: 6px;
+  @include skeleton-shimmer;
+}
+
+.skeleton-controls {
+  width: 74px;
+  height: 30px;
+  border-radius: 999px;
+  @include skeleton-shimmer;
+}
+
+.skeleton-cards.horizontal {
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.skeleton-cards.grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
+.skeleton-card {
+  flex: 0 0 180px;
+  height: 260px;
+  border-radius: 10px;
+  @include skeleton-shimmer;
+}
+
+@include mobile {
+  .skeleton-title {
+    width: 130px;
+    height: 16px;
+  }
+
+  .skeleton-controls {
+    width: 62px;
+    height: 26px;
+  }
+
+  .skeleton-card {
+    flex-basis: 132px;
+    height: 198px;
+  }
+}

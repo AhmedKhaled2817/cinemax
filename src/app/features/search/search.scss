@@ -1,0 +1,151 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.search {
+  background-color: $netflix-black;
+  min-height: 100vh;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+
+  @include tablet {
+    font-size: 28px;
+  }
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.search-hint {
+  color: $netflix-light-gray;
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.search-history {
+  margin-bottom: 22px;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    color: $netflix-off-white;
+  }
+}
+
+.history-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.history-chip,
+.clear-history-btn {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: $netflix-off-white;
+  font-size: 12px;
+  padding: 7px 12px;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.55);
+    color: $netflix-white;
+  }
+}
+
+.result-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+
+  span {
+    color: $netflix-light-gray;
+    font-size: 13px;
+  }
+}
+
+.sort-btn {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background-color: transparent;
+  color: $netflix-off-white;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.55);
+    color: $netflix-white;
+  }
+
+  &.active {
+    border-color: $netflix-red;
+    background-color: rgba(229, 9, 20, 0.2);
+    color: $netflix-white;
+  }
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+
+  @include tablet {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  @include mobile {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+}
+
+.no-results {
+  text-align: center;
+  padding: 80px 20px;
+  color: $netflix-light-gray;
+  font-size: 20px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: $netflix-light-gray;
+  font-size: 18px;
+}
+
+.load-more {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.load-more-btn {
+  @include netflix-button;
+  background-color: $netflix-red;
+  color: $netflix-white;
+  padding: 12px 40px;
+  font-size: 16px;
+
+  &:hover {
+    background-color: $netflix-red-hover;
+  }
+}

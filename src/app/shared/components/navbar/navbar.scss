@@ -1,0 +1,226 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-navbar;
+  background: $navbar-gradient;
+  padding: 12px 0;
+  transition: background-color $transition-normal;
+
+  &.scrolled {
+    background-color: $netflix-black;
+  }
+}
+
+.navbar-container {
+  @include flex-between;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 900;
+  color: $netflix-red;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+
+  li {
+    a {
+      font-size: 14px;
+      font-weight: 500;
+      color: $netflix-off-white;
+      transition: color $transition-fast;
+
+      &:hover,
+      &.active {
+        color: $netflix-white;
+      }
+    }
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-input {
+  width: 280px;
+  padding: 8px 40px 8px 16px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: $netflix-white;
+  font-size: 14px;
+  transition: all $transition-normal;
+
+  &::placeholder {
+    color: $netflix-light-gray;
+  }
+
+  &:focus {
+    border-color: $netflix-white;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  @include tablet {
+    width: 200px;
+  }
+
+  @include mobile {
+    width: 140px;
+  }
+}
+
+.clear-btn {
+  position: absolute;
+  right: 12px;
+  color: $netflix-light-gray;
+  font-size: 18px;
+  padding: 4px;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $netflix-white;
+  }
+}
+
+.auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-link-btn,
+.logout-btn {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: $netflix-white;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.auth-link-btn.register {
+  border-color: $netflix-red;
+  background-color: $netflix-red;
+
+  &:hover {
+    border-color: $netflix-red-hover;
+    background-color: $netflix-red-hover;
+  }
+}
+
+.welcome-user {
+  color: $netflix-off-white;
+  font-size: 13px;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@include tablet {
+  .welcome-user {
+    display: none;
+  }
+}
+
+@include mobile {
+  .navbar {
+    padding: 10px 0;
+  }
+
+  .logo {
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+
+  .navbar-actions {
+    gap: 6px;
+  }
+
+  .auth-link-btn,
+  .logout-btn {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .search-input {
+    width: 96px;
+    font-size: 12px;
+    padding: 7px 28px 7px 10px;
+  }
+
+  .clear-btn {
+    right: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .search-box {
+    display: none;
+  }
+}
+
+.mobile-tabbar {
+  display: none;
+}
+
+@include mobile {
+  .mobile-tabbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: rgba(20, 20, 20, 0.97);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+
+    a {
+      text-align: center;
+      padding: 10px 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: $netflix-light-gray;
+      transition: color $transition-fast;
+
+      &.active {
+        color: $netflix-white;
+      }
+    }
+  }
+}

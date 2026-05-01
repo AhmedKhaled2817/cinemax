@@ -1,0 +1,41 @@
+<div class="movie-row">
+  <div class="row-header">
+    <h2 class="row-title">{{ title }}</h2>
+    <div class="row-controls">
+      <button type="button" class="nav-btn" (click)="slidePrev()" aria-label="Previous {{ title }}">
+        &#10094;
+      </button>
+      <button type="button" class="nav-btn" (click)="slideNext()" aria-label="Next {{ title }}">
+        &#10095;
+      </button>
+    </div>
+  </div>
+
+  <swiper-container
+    #swiperRef
+    class="row-swiper"
+    loop="true"
+    speed="5000"
+    autoplay-delay="1"
+    autoplay-disable-on-interaction="false"
+    autoplay-pause-on-mouse-enter="true"
+    free-mode="true"
+    mousewheel-force-to-axis="true"
+    space-between="12"
+    slides-per-view="2.2"
+    (mouseenter)="pauseAutoPlay()"
+    (mouseleave)="resumeAutoPlay()"
+    breakpoints='{
+      "576": { "slidesPerView": 3.2, "spaceBetween": 12 },
+      "768": { "slidesPerView": 4.2, "spaceBetween": 14 },
+      "992": { "slidesPerView": 5.2, "spaceBetween": 16 },
+      "1200": { "slidesPerView": 6.2, "spaceBetween": 16 }
+    }'
+  >
+    @for (item of items; track item.id) {
+      <swiper-slide>
+        <app-movie-card [item]="item" [mediaType]="getItemMediaType(item)" />
+      </swiper-slide>
+    }
+  </swiper-container>
+</div>

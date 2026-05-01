@@ -1,0 +1,14 @@
+<app-navbar />
+
+@if (isLoading()) {
+  <div class="global-loading-bar"></div>
+}
+
+@if (errorMessage()) {
+  <div class="global-error-banner">
+    <span>{{ errorMessage() }}</span>
+    <button type="button" (click)="dismissError()">Dismiss</button>
+  </div>
+}
+
+<router-outlet />

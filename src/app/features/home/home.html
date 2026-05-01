@@ -1,0 +1,150 @@
+<div class="home">
+  @if (!loading() && trendingMovies().length > 0) {
+    <swiper-container
+      #heroSwiper
+      class="hero-swiper"
+      effect="fade"
+      fade-effect-cross-fade="true"
+      loop="true"
+      speed="900"
+      [autoplay-delay]="isLargeScreen() ? 4500 : 0"
+      autoplay-disable-on-interaction="false"
+      pagination="true"
+      allow-touch-move="true"
+    >
+      @for (movie of trendingMovies().slice(0, 7); track movie.id) {
+        <swiper-slide>
+          <app-hero-banner [item]="movie" mediaType="movie" [showButtons]="!isLargeScreen()" />
+        </swiper-slide>
+      }
+    </swiper-container>
+  }
+
+  <div class="rows-container">
+    <div class="rows-header container">
+      <div class="header-copy">
+        <h2>Discover What's Hot</h2>
+        <p>Fresh trends, top picks, and must-watch titles for tonight.</p>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="header-btn primary" (click)="surpriseMe()">Surprise Me</button>
+        <button type="button" class="header-btn ghost" (click)="refreshContent()">Refresh</button>
+      </div>
+    </div>
+
+    <div class="stats-strip container">
+      <div class="stat-item">
+        <span class="label">Total Titles</span>
+        <span class="value">{{ getTotalLoadedItems() }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="label">Movie Sections</span>
+        <span class="value">4</span>
+      </div>
+      <div class="stat-item">
+        <span class="label">TV Sections</span>
+        <span class="value">2</span>
+      </div>
+      <div class="stat-item">
+        <span class="label">My Watchlist</span>
+        <span class="value">{{ watchlistCount() }}</span>
+      </div>
+    </div>
+
+    @if (!loading()) {
+      <div class="quick-nav container">
+        <button
+          type="button"
+          class="quick-nav-btn filter"
+          [class.active]="activeView() === 'all'"
+          (click)="setView('all')"
+        >
+          All
+        </button>
+        <button
+          type="button"
+          class="quick-nav-btn filter"
+          [class.active]="activeView() === 'movies'"
+          (click)="setView('movies')"
+        >
+          Movies
+        </button>
+        <button
+          type="button"
+          class="quick-nav-btn filter"
+          [class.active]="activeView() === 'tv'"
+          (click)="setView('tv')"
+        >
+          TV Shows
+        </button>
+
+        @for (link of sectionLinks; track link.id) {
+          <button type="button" class="quick-nav-btn" (click)="scrollToSection(link.id)">
+            {{ link.label }}
+          </button>
+        }
+      </div>
+    }
+
+    @if (loading()) {
+      <div class="rows-loading container">
+        @for (row of [1, 2, 3]; track row) {
+          <div class="loading-row">
+            <div class="loading-title"></div>
+            <div class="loading-cards">
+              @for (card of [1, 2, 3, 4, 5]; track card) {
+                <div class="loading-card"></div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    @if (shouldShowMovies() && trendingMovies().length > 0) {
+      <section id="trending-movies">
+        <app-movie-row title="Trending Movies" [items]="trendingMovies()" mediaType="movie" />
+      </section>
+    }
+
+    @if (shouldShowMovies() && popularMovies().length > 0) {
+      <section id="popular-movies">
+        <app-movie-row title="Popular Movies" [items]="popularMovies()" mediaType="movie" />
+      </section>
+    }
+
+    @if (shouldShowMovies() && topRatedMovies().length > 0) {
+      <section id="top-rated-movies">
+        <app-movie-row title="Top Rated Movies" [items]="topRatedMovies()" mediaType="movie" />
+      </section>
+    }
+
+    @if (shouldShowMovies() && upcomingMovies().length > 0) {
+      <section id="upcoming-movies">
+        <app-movie-row title="Upcoming Movies" [items]="upcomingMovies()" mediaType="movie" />
+      </section>
+    }
+
+    @if (shouldShowTv() && trendingTv().length > 0) {
+      <section id="trending-tv">
+        <app-movie-row title="Trending TV Shows" [items]="trendingTv()" mediaType="tv" />
+      </section>
+    }
+
+    @if (shouldShowTv() && popularTv().length > 0) {
+      <section id="popular-tv">
+        <app-movie-row title="Popular TV Shows" [items]="popularTv()" mediaType="tv" />
+      </section>
+    }
+
+    @if (recentlyViewed().length > 0) {
+      <section id="recently-viewed">
+        <app-movie-row title="Recently Viewed" [items]="recentlyViewed()" />
+      </section>
+    }
+  </div>
+
+  @if (showBackToTop()) {
+    <button type="button" class="back-to-top" (click)="backToTop()" aria-label="Back to top">Top</button>
+  }
+</div>

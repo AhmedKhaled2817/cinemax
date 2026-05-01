@@ -1,0 +1,13 @@
+<div class="movie-card" (click)="goToDetails()">
+  <img [src]="getImageUrl()" [alt]="getTitle()" class="card-image" />
+  <div class="card-overlay">
+    <div class="card-info">
+      <h4 class="card-title">{{ getTitle() }}</h4>
+      <div class="card-actions">
+        <button class="watchlist-btn" (click)="toggleWatchlist($event)">
+          {{ isInWatchlist() ? '✓' : '+' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

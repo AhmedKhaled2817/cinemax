@@ -1,0 +1,23 @@
+<div class="genre page-wrapper">
+  <div class="container">
+    <h1 class="page-title">{{ genreName }}</h1>
+
+    <div class="movies-grid">
+      @for (item of items(); track item.id) {
+        <app-movie-card [item]="item" [mediaType]="mediaType" />
+      }
+    </div>
+
+    @if (loading()) {
+      <div class="loading">
+        <p>Loading...</p>
+      </div>
+    }
+
+    @if (!loading() && page < totalPages && items().length > 0) {
+      <div class="load-more">
+        <button class="load-more-btn" (click)="loadMore()">Load More</button>
+      </div>
+    }
+  </div>
+</div>

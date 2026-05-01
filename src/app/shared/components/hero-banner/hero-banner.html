@@ -1,0 +1,16 @@
+<div class="hero">
+  <div class="hero-bg">
+    <img [src]="getImageUrl(item.backdrop_path)" [alt]="getTitle()" class="hero-image" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content container">
+    <h1 class="hero-title">{{ getTitle() }}</h1>
+    <p class="hero-overview">{{ item.overview }}</p>
+    @if (showButtons) {
+      <div class="hero-buttons">
+        <button class="play-btn" (click)="goToDetails()">▶ Play</button>
+        <button class="info-btn" (click)="goToDetails()">ⓘ More Info</button>
+      </div>
+    }
+  </div>
+</div>

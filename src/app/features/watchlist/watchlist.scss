@@ -1,0 +1,84 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.watchlist {
+  background-color: $netflix-black;
+  min-height: 100vh;
+  padding-top: calc(#{$navbar-height} + 18px);
+  padding-bottom: 80px;
+}
+
+.watchlist-hero {
+  margin-top: 6px;
+  margin-bottom: 14px;
+  padding: 18px 16px;
+  border-radius: 10px;
+  background: linear-gradient(100deg, rgba(229, 9, 20, 0.16), rgba(20, 20, 20, 0.45));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: $netflix-white;
+
+  @include tablet {
+    font-size: 28px;
+  }
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.watchlist-subtitle {
+  color: $netflix-off-white;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.watchlist-note {
+  color: $netflix-off-white;
+  font-size: 13px;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.empty-watchlist {
+  text-align: center;
+  padding: 100px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.empty-watchlist h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.empty-watchlist p {
+  color: $netflix-light-gray;
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.browse-btn {
+  @include netflix-button;
+  background-color: $netflix-red;
+  color: $netflix-white;
+  padding: 14px 40px;
+  font-size: 16px;
+
+  &:hover {
+    background-color: $netflix-red-hover;
+  }
+}

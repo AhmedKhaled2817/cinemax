@@ -1,0 +1,88 @@
+<div class="movie-details">
+  @if (!loading() && details()) {
+    <div class="details-hero">
+      <div class="hero-bg">
+        <img [src]="getBackdropUrl()" [alt]="getTitle()" class="hero-image" />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="details-content container">
+        <div class="details-poster">
+          <img [src]="getPosterUrl()" [alt]="getTitle()" class="poster" />
+        </div>
+        <div class="details-info">
+          <h1 class="title">{{ getTitle() }}</h1>
+          <div class="meta">
+            <span class="vote">⭐ {{ details()!.vote_average | number: '1.1-1' }}</span>
+            <span class="release">{{ getReleaseDate() | date: 'yyyy' }}</span>
+            <span class="runtime">{{ getRuntimeOrSeasons() }}</span>
+          </div>
+          @if (details()!.genres && details()!.genres.length > 0) {
+            <div class="genres">
+              @for (genre of details()!.genres; track genre.id) {
+                <span class="genre">{{ genre.name }}</span>
+              }
+            </div>
+          }
+          <p class="overview">{{ details()!.overview }}</p>
+          <div class="actions">
+            <button class="play-btn" (click)="openTrailer()">▶ Play Trailer</button>
+            <button class="watchlist-btn" (click)="toggleWatchlist()">
+              {{ isInWatchlist() ? '✓ In My List' : '+ My List' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="details-sections">
+      @if (cast().length > 0) {
+        <div class="section">
+          <h2 class="section-title">Cast</h2>
+          <div class="cast-grid">
+            @for (actor of cast(); track actor.id) {
+              <div class="cast-card">
+                <div class="cast-image">
+                  @if (actor.profile_path) {
+                    <img [src]="getCastImage(actor.profile_path)" [alt]="actor.name" />
+                  } @else {
+                    <div class="cast-placeholder">{{ actor.name.charAt(0) }}</div>
+                  }
+                </div>
+                <h4 class="cast-name">{{ actor.name }}</h4>
+                <p class="cast-character">{{ actor.character }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (similar().length > 0) {
+        <div class="section">
+          <h2 class="section-title">Similar {{ mediaType === 'movie' ? 'Movies' : 'TV Shows' }}</h2>
+          <div class="similar-scroll">
+            @for (item of similar(); track item.id) {
+              <app-movie-card [item]="item" [mediaType]="mediaType" />
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (showTrailer()) {
+      <div class="trailer-modal" (click)="closeTrailer()">
+        <div class="trailer-content" (click)="$event.stopPropagation()">
+          <button class="close-btn" (click)="closeTrailer()">✕</button>
+          @if (trailerKey()) {
+            <youtube-player [videoId]="trailerKey()" width="100%" height="100%" />
+          }
+        </div>
+      </div>
+    }
+  }
+
+  @if (loading()) {
+    <div class="loading">
+      <p>Loading...</p>
+    </div>
+  }
+</div>

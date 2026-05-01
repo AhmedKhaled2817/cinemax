@@ -1,0 +1,117 @@
+<div class="auth-page">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-title">Create Account</h1>
+
+      @if (error()) {
+        <div class="error-message">
+          {{ error() }}
+        </div>
+      }
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            placeholder="Enter your name"
+          />
+
+          @if (registerForm.get('name')?.touched && registerForm.get('name')?.invalid) {
+            <span class="field-error">
+              @if (registerForm.get('name')?.errors?.['required']) {
+                Name is required
+              }
+            </span>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Enter your email"
+          />
+
+          @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+            <span class="field-error">
+              @if (registerForm.get('email')?.errors?.['required']) {
+                Email is required
+              }
+              @if (registerForm.get('email')?.errors?.['email']) {
+                Invalid email format
+              }
+            </span>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter password"
+          />
+
+          @if (registerForm.get('password')?.touched && registerForm.get('password')?.invalid) {
+            <span class="field-error">
+              @if (registerForm.get('password')?.errors?.['required']) {
+                Password is required
+              }
+              @if (registerForm.get('password')?.errors?.['minlength']) {
+                Minimum 6 characters
+              }
+            </span>
+          }
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            placeholder="Confirm password"
+          />
+
+          @if (registerForm.get('confirmPassword')?.touched && registerForm.hasError('passwordMismatch')) {
+            <span class="field-error">
+              Passwords do not match
+            </span>
+          }
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="auth-btn"
+          [disabled]="loading() || registerForm.invalid"
+        >
+          @if (loading()) {
+            <span class="loading-spinner"></span>
+            Creating account...
+          } @else {
+            Register
+          }
+        </button>
+
+      </form>
+
+      <!-- Footer -->
+      <div class="auth-footer">
+        <p>Already have an account?</p>
+        <a routerLink="/login" class="auth-link">Sign In</a>
+      </div>
+    </div>
+  </div>
+</div>

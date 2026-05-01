@@ -1,0 +1,62 @@
+<nav class="navbar">
+  <div class="navbar-container container">
+    <a routerLink="/" class="logo">CINEMAX</a>
+
+    <ul class="nav-links">
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="/browse/movie" routerLinkActive="active">Movies</a>
+      </li>
+      <li>
+        <a routerLink="/browse/tv" routerLinkActive="active">TV Shows</a>
+      </li>
+      @if (isAuthenticated()) {
+        <li>
+          <a routerLink="/watchlist" routerLinkActive="active">My List</a>
+        </li>
+      }
+    </ul>
+
+    <div class="navbar-actions">
+      <div class="search-box">
+        <input
+          type="text"
+          [formControl]="searchControl"
+          placeholder="Titles, people, genres"
+          class="search-input"
+        />
+        @if (searchControl.value) {
+          <button class="clear-btn" type="button" (click)="clearSearch()">x</button>
+        }
+      </div>
+
+      @if (isAuthenticated()) {
+        <div class="auth-actions">
+          <span class="welcome-user">Hi, {{ currentUser()?.name }}</span>
+          <button type="button" class="logout-btn" (click)="logout()">Logout</button>
+        </div>
+      } @else {
+        <div class="auth-actions">
+          <a routerLink="/login" class="auth-link-btn">Login</a>
+          <a routerLink="/register" class="auth-link-btn register">Register</a>
+        </div>
+      }
+    </div>
+  </div>
+</nav>
+
+<nav class="mobile-tabbar">
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+  <a routerLink="/browse/movie" routerLinkActive="active">Movies</a>
+  <a routerLink="/browse/tv" routerLinkActive="active">TV</a>
+  <a routerLink="/search" routerLinkActive="active">Search</a>
+  @if (isAuthenticated()) {
+    <a routerLink="/watchlist" routerLinkActive="active">My List</a>
+  } @else {
+    <a routerLink="/login" routerLinkActive="active">Login</a>
+  }
+</nav>

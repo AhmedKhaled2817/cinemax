@@ -1,0 +1,96 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.movie-row {
+  margin-bottom: 40px;
+  padding: 0 4%;
+}
+
+.row-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.row-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: $netflix-white;
+  letter-spacing: 0.3px;
+
+  @include tablet {
+    font-size: 20px;
+  }
+
+  @include mobile {
+    font-size: 18px;
+  }
+}
+
+.row-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: rgba(20, 20, 20, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: $netflix-white;
+  font-size: 16px;
+  line-height: 1;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: rgba(20, 20, 20, 0.95);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.row-swiper {
+  display: block;
+  width: 100%;
+  padding: 8px 2px;
+  cursor: grab;
+
+  --swiper-navigation-size: 0;
+}
+
+.row-swiper:active {
+  cursor: grabbing;
+}
+
+swiper-slide {
+  height: auto;
+}
+
+:host ::ng-deep .row-swiper .swiper-button-prev,
+:host ::ng-deep .row-swiper .swiper-button-next {
+  display: none;
+}
+
+@include mobile {
+  .movie-row {
+    margin-bottom: 28px;
+    padding: 0 2%;
+  }
+
+  .row-header {
+    margin-bottom: 10px;
+  }
+
+  .row-controls {
+    gap: 6px;
+  }
+
+  .nav-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+}

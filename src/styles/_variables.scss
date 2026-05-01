@@ -1,0 +1,48 @@
+// src/styles/_variables.scss
+// ==================== COLORS ====================
+$netflix-red: #e50914;
+$netflix-red-hover: #f40612;
+$netflix-black: #141414;
+$netflix-dark: #181818;
+$netflix-gray: #2f2f2f;
+$netflix-light-gray: #808080;
+$netflix-white: #ffffff;
+$netflix-off-white: #e5e5e5;
+
+// ==================== GRADIENTS ====================
+$hero-gradient: linear-gradient(
+  to top,
+  $netflix-black 0%,
+  transparent 50%,
+  rgba(0, 0, 0, 0.3) 100%
+);
+
+$card-hover-gradient: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 60%);
+
+$navbar-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+
+// ==================== SIZES ====================
+$navbar-height: 68px;
+$movie-card-width: 240px;
+$movie-card-height: 135px;
+$movie-row-height: 200px;
+$hero-height: 85vh;
+
+// ==================== BREAKPOINTS ====================
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// ==================== TRANSITIONS ====================
+$transition-fast: 0.15s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// ==================== Z-INDEX ====================
+$z-navbar: 1000;
+$z-modal: 1100;
+$z-video-player: 1200;
+$z-tooltip: 1300;
+$z-skeleton: -1;
