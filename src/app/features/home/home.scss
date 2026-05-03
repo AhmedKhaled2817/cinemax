@@ -10,6 +10,7 @@
 .hero-swiper {
   display: block;
   width: 100%;
+  position: relative;
   --swiper-pagination-bullet-size: 7px;
   --swiper-pagination-color: #{$netflix-white};
   --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.55);
@@ -18,8 +19,14 @@
 }
 
 :host ::ng-deep .hero-swiper .swiper-pagination {
-  bottom: 22px;
+  bottom: 110px;
+  left: 50%;
+  width: max-content;
+  transform: translateX(-50%);
   z-index: 10;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 :host ::ng-deep .hero-swiper swiper-slide {
@@ -32,14 +39,21 @@
 
 @include desktop {
   :host ::ng-deep .hero-swiper .swiper-pagination {
-    bottom: 30px;
+    bottom: clamp(130px, 14vh, 190px);
+  }
+}
+
+@include large-desktop {
+  :host ::ng-deep .hero-swiper .swiper-pagination {
+    bottom: clamp(150px, 16vh, 230px);
   }
 }
 
 @include mobile {
   :host ::ng-deep .hero-swiper .swiper-pagination {
-    bottom: 16px;
+    bottom: 72px;
     --swiper-pagination-bullet-size: 6px;
+    padding: 3px 8px;
   }
 }
 

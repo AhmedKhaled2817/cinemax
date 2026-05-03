@@ -11,6 +11,7 @@ export class LocalStorageService {
   private readonly WATCHLIST_KEY = 'cinemax_watchlist';
   private readonly RECENTLY_VIEWED_KEY = 'cinemax_recently_viewed';
   private readonly SEARCH_HISTORY_KEY = 'cinemax_search_history';
+  private readonly USER_RATINGS_KEY = 'cinemax_user_ratings';
   private isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
@@ -95,6 +96,39 @@ export class LocalStorageService {
   clearSearchHistory(): void {
     if (!this.isBrowser) return;
     localStorage.removeItem(this.SEARCH_HISTORY_KEY);
+  }
+
+  getUserRating(id: number, mediaType: 'movie' | 'tv'): number {
+    const ratings = this.getUserRatingsMap();
+    return ratings[this.ratingEntryKey(id, mediaType)] ?? 0;
+  }
+
+  setUserRating(id: number, mediaType: 'movie' | 'tv', rating: number): void {
+    const ratings = this.getUserRatingsMap();
+    const key = this.ratingEntryKey(id, mediaType);
+    const rounded = Math.max(0, Math.min(5, Math.round(rating)));
+
+    if (rounded === 0) {
+      delete ratings[key];
+    } else {
+      ratings[key] = rounded;
+    }
+
+    this.safeSet(this.USER_RATINGS_KEY, ratings);
+  }
+
+  getAllUserRatings(): Record<string, number> {
+    return this.getUserRatingsMap();
+  }
+
+  private getUserRatingsMap(): Record<string, number> {
+    if (!this.isBrowser) return {};
+    const data = localStorage.getItem(this.USER_RATINGS_KEY);
+    return data ? JSON.parse(data) : {};
+  }
+
+  private ratingEntryKey(id: number, mediaType: 'movie' | 'tv'): string {
+    return `${mediaType}:${id}`;
   }
 
   private safeSet<T>(key: string, value: T): void {

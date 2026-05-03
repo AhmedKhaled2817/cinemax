@@ -16,10 +16,21 @@ import { DecimalPipe, DatePipe } from '@angular/common';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { SmartImageDirective } from '../../shared/directives/smart-image.directive';
 import { PreventDoubleClickDirective } from '../../shared/directives/prevent-double-click.directive';
+import { FormsModule } from '@angular/forms';
+import { RatingModule } from 'primeng/rating';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [DatePipe, DecimalPipe, MovieCard, YouTubePlayer, SmartImageDirective, PreventDoubleClickDirective],
+  imports: [
+    DatePipe,
+    DecimalPipe,
+    MovieCard,
+    YouTubePlayer,
+    SmartImageDirective,
+    PreventDoubleClickDirective,
+    FormsModule,
+    RatingModule,
+  ],
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.scss',
 })
@@ -35,6 +46,7 @@ export class MediaDetails implements OnInit {
   loading = signal(true);
   showTrailer = signal(false);
   trailerKey = signal('');
+  userRating = signal(0);
 
   constructor(
     private route: ActivatedRoute,
@@ -47,6 +59,7 @@ export class MediaDetails implements OnInit {
     this.route.params.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params: Params) => {
       this.mediaType = this.router.url.startsWith('/movie') ? 'movie' : 'tv';
       this.id = +params['id'];
+      this.userRating.set(this.localStorageService.getUserRating(this.id, this.mediaType));
       this.loadData();
     });
   }
@@ -162,5 +175,15 @@ export class MediaDetails implements OnInit {
 
   closeTrailer(): void {
     this.showTrailer.set(false);
+  }
+
+  onRatingChange(rating: number | null): void {
+    const nextRating = rating ?? 0;
+    this.userRating.set(nextRating);
+    this.localStorageService.setUserRating(this.id, this.mediaType, nextRating);
+  }
+
+  clearRating(): void {
+    this.onRatingChange(0);
   }
 }

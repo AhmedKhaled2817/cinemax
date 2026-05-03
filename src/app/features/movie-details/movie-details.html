@@ -30,6 +30,19 @@
               {{ isInWatchlist() ? '✓ In My List' : '+ My List' }}
             </button>
           </div>
+          <div class="user-rating-box">
+            <span class="rating-label">Your Rating</span>
+            <p-rating
+              [ngModel]="userRating()"
+              (ngModelChange)="onRatingChange($event)"
+              [stars]="5"
+            />
+            @if (userRating() > 0) {
+              <button class="clear-rating-btn" appPreventDoubleClick [appPreventDoubleClick]="300" (click)="clearRating()">
+                Clear
+              </button>
+            }
+          </div>
         </div>
       </div>
     </div>

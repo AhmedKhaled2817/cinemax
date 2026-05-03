@@ -48,6 +48,81 @@
   padding: 10px 12px;
 }
 
+.ratings-insights {
+  margin-bottom: 20px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.insights-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  h2 {
+    font-size: 18px;
+    margin: 0;
+    color: $netflix-white;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.avg-pill {
+  font-size: 13px;
+  color: $netflix-off-white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.rated-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.rated-card {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 8px;
+  transition: transform $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  img {
+    width: 52px;
+    height: 76px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+}
+
+.rated-content {
+  min-width: 0;
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: $netflix-white;
+  }
+}
+
 .empty-watchlist {
   text-align: center;
   padding: 100px 20px;

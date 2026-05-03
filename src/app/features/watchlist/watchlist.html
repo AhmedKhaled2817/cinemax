@@ -7,6 +7,25 @@
 
     @if (watchlist().length > 0) {
       <p class="watchlist-note">Use (+ / ✓) on any card to remove items from your list.</p>
+      @if (topRated().length > 0) {
+        <section class="ratings-insights">
+          <div class="insights-header">
+            <h2>Your Top Rated Picks</h2>
+            <span class="avg-pill">Average {{ averageRating() }}/5</span>
+          </div>
+          <div class="rated-grid">
+            @for (item of topRated(); track item.id) {
+              <a class="rated-card" [routerLink]="getDetailsLink(item)">
+                <img appSmartImage [src]="getPosterUrl(item)" [alt]="getTitle(item)" />
+                <div class="rated-content">
+                  <h3>{{ getTitle(item) }}</h3>
+                  <p-rating [ngModel]="getItemRating(item)" [readonly]="true" />
+                </div>
+              </a>
+            }
+          </div>
+        </section>
+      }
       <app-movie-row title="Saved in My List" [items]="watchlist()" />
     } @else {
       <div class="empty-watchlist">

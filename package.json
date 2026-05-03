@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "packageManager": "npm@11.6.0",
-
   "scripts": {
     "start": "ng serve",
     "build": "ng build",
@@ -11,7 +10,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-
   "dependencies": {
     "@angular/animations": "21.2.8",
     "@angular/cdk": "21.2.8",
@@ -23,21 +21,19 @@
     "@angular/platform-browser": "21.2.8",
     "@angular/router": "21.2.8",
     "@angular/youtube-player": "21.2.8",
-
     "@ngrx/effects": "21.1.0",
     "@ngrx/store": "21.1.0",
     "@ngrx/store-devtools": "21.1.0",
-
+    "primeicons": "^7.0.0",
+    "primeng": "^21.1.6",
     "rxjs": "7.8.1",
     "swiper": "12.1.3",
     "tslib": "2.6.2"
   },
-
   "devDependencies": {
     "@angular/build": "21.2.8",
     "@angular/cli": "21.2.8",
     "@angular/compiler-cli": "21.2.8",
-
     "@types/node": "20.19.0",
     "typescript": "5.9.2",
     "vitest": "4.0.8"

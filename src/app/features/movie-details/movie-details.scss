@@ -88,6 +88,8 @@
   font-weight: 900;
   line-height: 1.12;
   margin-bottom: 22px;
+  color: $netflix-white;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.75);
 
   @include tablet {
     font-size: 36px;
@@ -103,7 +105,8 @@
   gap: 16px;
   margin-bottom: 16px;
   font-size: 18px;
-  color: $netflix-off-white;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
 
   @include tablet {
     justify-content: center;
@@ -132,11 +135,27 @@
 }
 
 .genre {
-  padding: 6px 16px;
-  background-color: rgba(255, 255, 255, 0.1);
+  padding: 7px 14px;
   border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: $netflix-white;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(135deg, rgba(229, 9, 20, 0.32), rgba(96, 12, 18, 0.45));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.genre:nth-child(2n) {
+  background: linear-gradient(135deg, rgba(12, 111, 163, 0.35), rgba(7, 58, 88, 0.5));
+}
+
+.genre:nth-child(3n) {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.35), rgba(21, 62, 25, 0.5));
+}
+
+.genre:nth-child(4n) {
+  background: linear-gradient(135deg, rgba(126, 87, 194, 0.35), rgba(63, 43, 96, 0.5));
 }
 
 .overview {
@@ -178,6 +197,40 @@
   font-size: 18px;
 }
 
+.user-rating-box {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  @include tablet {
+    justify-content: center;
+  }
+}
+
+.rating-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffd166;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+.clear-rating-btn {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: $netflix-off-white;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    color: $netflix-white;
+  }
+}
+
 .details-sections {
   padding: 0 4% 80px;
 }
@@ -190,13 +243,19 @@
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 24px;
+  color: $netflix-white;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.65);
+  border-left: 4px solid rgba(229, 9, 20, 0.85);
+  padding-left: 12px;
 
   @include tablet {
     font-size: 24px;
+    padding-left: 10px;
   }
 
   @include mobile {
     font-size: 20px;
+    padding-left: 8px;
   }
 }
 
