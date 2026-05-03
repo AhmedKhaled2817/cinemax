@@ -38,7 +38,7 @@
     "@angular/cli": "21.2.8",
     "@angular/compiler-cli": "21.2.8",
 
-    "@types/node": "20.17.19",
+    "@types/node": "20.19.0",
     "typescript": "5.9.2",
     "vitest": "4.0.8"
   }
