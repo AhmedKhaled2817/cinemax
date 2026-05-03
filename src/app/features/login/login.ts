@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth-service';
 import { LoginRequest } from '../../core/models';
+import { PreventDoubleClickDirective } from '../../shared/directives/prevent-double-click.directive';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, PreventDoubleClickDirective],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })

@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractContro
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth-service';
 import { RegisterRequest } from '../../core/models';
+import { PreventDoubleClickDirective } from '../../shared/directives/prevent-double-click.directive';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, PreventDoubleClickDirective],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -60,7 +61,7 @@ export class Register implements OnInit {
 
     this.authService.register(data).subscribe({
       next: () => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
       },
       error: () => {
         this.error.set('Registration failed');

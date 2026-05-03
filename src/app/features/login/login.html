@@ -53,6 +53,7 @@
         <button
           type="submit"
           class="auth-btn"
+          appPreventDoubleClick
           [disabled]="loading() || loginForm.invalid"
         >
           @if (loading()) {

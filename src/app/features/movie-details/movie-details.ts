@@ -14,10 +14,12 @@ import {
 import { MovieCard } from '../../shared/components/movie-card/movie-card';
 import { DecimalPipe, DatePipe } from '@angular/common';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { SmartImageDirective } from '../../shared/directives/smart-image.directive';
+import { PreventDoubleClickDirective } from '../../shared/directives/prevent-double-click.directive';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [DatePipe, DecimalPipe, MovieCard, YouTubePlayer],
+  imports: [DatePipe, DecimalPipe, MovieCard, YouTubePlayer, SmartImageDirective, PreventDoubleClickDirective],
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.scss',
 })

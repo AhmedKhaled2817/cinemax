@@ -2,10 +2,11 @@ import { Component, Input, output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movie, Tv } from '../../../core/models';
 import { TmdbService } from '../../../core/services/tmdb-service';
+import { SmartImageDirective } from '../../directives/smart-image.directive';
 
 @Component({
   selector: 'app-hero-banner',
-  imports: [],
+  imports: [SmartImageDirective],
   templateUrl: './hero-banner.html',
   styleUrl: './hero-banner.scss',
 })

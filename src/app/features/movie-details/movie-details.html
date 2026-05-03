@@ -2,12 +2,12 @@
   @if (!loading() && details()) {
     <div class="details-hero">
       <div class="hero-bg">
-        <img [src]="getBackdropUrl()" [alt]="getTitle()" class="hero-image" />
+        <img appSmartImage [src]="getBackdropUrl()" [alt]="getTitle()" class="hero-image" />
         <div class="hero-overlay"></div>
       </div>
       <div class="details-content container">
         <div class="details-poster">
-          <img [src]="getPosterUrl()" [alt]="getTitle()" class="poster" />
+          <img appSmartImage [src]="getPosterUrl()" [alt]="getTitle()" class="poster" />
         </div>
         <div class="details-info">
           <h1 class="title">{{ getTitle() }}</h1>
@@ -25,8 +25,8 @@
           }
           <p class="overview">{{ details()!.overview }}</p>
           <div class="actions">
-            <button class="play-btn" (click)="openTrailer()">▶ Play Trailer</button>
-            <button class="watchlist-btn" (click)="toggleWatchlist()">
+            <button class="play-btn" appPreventDoubleClick (click)="openTrailer()">▶ Play Trailer</button>
+            <button class="watchlist-btn" appPreventDoubleClick (click)="toggleWatchlist()">
               {{ isInWatchlist() ? '✓ In My List' : '+ My List' }}
             </button>
           </div>
@@ -43,7 +43,7 @@
               <div class="cast-card">
                 <div class="cast-image">
                   @if (actor.profile_path) {
-                    <img [src]="getCastImage(actor.profile_path)" [alt]="actor.name" />
+                    <img appSmartImage [src]="getCastImage(actor.profile_path)" [alt]="actor.name" />
                   } @else {
                     <div class="cast-placeholder">{{ actor.name.charAt(0) }}</div>
                   }

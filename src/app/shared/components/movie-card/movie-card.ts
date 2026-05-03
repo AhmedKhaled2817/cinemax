@@ -3,10 +3,12 @@ import { Router } from '@angular/router';
 import { Movie, Tv } from '../../../core/models';
 import { TmdbService } from '../../../core/services/tmdb-service';
 import { LocalStorageService, WatchlistItem } from '../../../core/services/local-storage-service';
+import { SmartImageDirective } from '../../directives/smart-image.directive';
+import { PreventDoubleClickDirective } from '../../directives/prevent-double-click.directive';
 
 @Component({
   selector: 'app-movie-card',
-  imports: [],
+  imports: [SmartImageDirective, PreventDoubleClickDirective],
   templateUrl: './movie-card.html',
   styleUrl: './movie-card.scss',
 })

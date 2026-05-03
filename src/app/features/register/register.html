@@ -95,6 +95,7 @@
         <button
           type="submit"
           class="auth-btn"
+          appPreventDoubleClick
           [disabled]="loading() || registerForm.invalid"
         >
           @if (loading()) {
