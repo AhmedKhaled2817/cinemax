@@ -271,30 +271,54 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
+
+  @include mobile {
+    padding: 12px;
+  }
 }
 
 .trailer-content {
   position: relative;
-  width: 100%;
-  max-width: 1200px;
+  width: min(1200px, 100%);
+  max-height: calc(100vh - 48px);
   aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+
+  @include mobile {
+    max-height: calc(100vh - 24px);
+    border-radius: 8px;
+  }
+}
+
+.trailer-content youtube-player {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.trailer-content ::ng-deep iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
 }
 
 .close-btn {
   position: absolute;
-  top: -50px;
-  right: 0;
+  top: 12px;
+  right: 12px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: $netflix-gray;
+  background-color: rgba(20, 20, 20, 0.85);
   color: $netflix-white;
   font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color $transition-fast;
+  z-index: 2;
 
   &:hover {
     background-color: $netflix-light-gray;
